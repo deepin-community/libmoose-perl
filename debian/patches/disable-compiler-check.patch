@@ -1,0 +1,20 @@
+Description: Disable compiler check.
+ This is not needed in a Debian build environment, and more importantly,
+ it breaks cross-builds.
+Origin: vendor
+Forwarded: not-needed
+Author: gregor herrmann <gregoa@debian.org>
+Last-Update: 2019-11-24
+
+--- a/Makefile.PL
++++ b/Makefile.PL
+@@ -8,9 +8,6 @@
+ 
+ # Secondary compile testing via ExtUtils::HasCompiler
+ use lib 'inc';
+-use ExtUtils::HasCompiler 0.014 'can_compile_loadable_object';
+-die 'This distribution requires a working compiler'
+-    unless can_compile_loadable_object(quiet => 1);
+ 
+ use ExtUtils::MakeMaker;
+ check_conflicts();

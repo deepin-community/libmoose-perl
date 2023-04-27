@@ -1,0 +1,5 @@
+Class/MOP.pm
+Moose/Meta/Role/Attribute.pm
+Moose/Meta/TypeConstraint/Parameterizable.pm
+Moose/Meta/TypeCoercion.pm
+Moose/Util/TypeConstraints.pm
