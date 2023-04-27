@@ -1,15 +1,166 @@
-Source: template-repository
-Section: unknown
+Source: libmoose-perl
+Maintainer: Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>
+Uploaders: Salvatore Bonaccorso <carnil@debian.org>,
+           gregor herrmann <gregoa@debian.org>,
+           Damyan Ivanov <dmn@debian.org>,
+           Niko Tyni <ntyni@debian.org>,
+           Ansgar Burchardt <ansgar@debian.org>
+Section: perl
+Testsuite: autopkgtest-pkg-perl
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Build-Depends: debhelper-compat (= 13),
+               libclass-load-perl <!nocheck>,
+               libclass-load-xs-perl <!nocheck>,
+               libcpan-meta-check-perl <!nocheck>,
+               libcpan-meta-requirements-perl <!nocheck>,
+               libdata-optlist-perl <!nocheck>,
+               libdatetime-format-mysql-perl <!nocheck>,
+               libdbm-deep-perl <!nocheck>,
+               libdevel-globaldestruction-perl <!nocheck>,
+               libdevel-overloadinfo-perl <!nocheck>,
+               libdevel-partialdump-perl <!nocheck>,
+               libdevel-stacktrace-perl <!nocheck>,
+               libdist-checkconflicts-perl <!nocheck>,
+               libeval-closure-perl <!nocheck>,
+               liblocale-us-perl <!nocheck>,
+               libmodule-refresh-perl <!nocheck>,
+               libmodule-runtime-conflicts-perl <!nocheck>,
+               libmodule-runtime-perl <!nocheck>,
+               libmro-compat-perl <!nocheck>,
+               libpackage-deprecationmanager-perl <!nocheck>,
+               libpackage-stash-perl <!nocheck>,
+               libpackage-stash-xs-perl <!nocheck>,
+               libpadwalker-perl <!nocheck>,
+               libparams-coerce-perl <!nocheck>,
+               libparams-util-perl <!nocheck>,
+               libregexp-common-perl <!nocheck>,
+               libscalar-list-utils-perl (>= 1:1.56) <!nocheck>,
+               libsub-exporter-perl <!nocheck>,
+               libsuper-perl <!nocheck>,
+               libtest-cleannamespaces-perl <!nocheck>,
+               libtest-deep-perl <!nocheck>,
+               libtest-fatal-perl <!nocheck>,
+               libtest-leaktrace-perl <!nocheck>,
+               libtest-memory-cycle-perl <!nocheck>,
+               libtest-needs-perl (>= 0.002010) <!nocheck>,
+               libtest-output-perl <!nocheck>,
+               libtest-warn-perl <!nocheck>,
+               libtest-warnings-perl <!nocheck>,
+               libtry-tiny-perl <!nocheck>,
+               liburi-perl <!nocheck>,
+               libwww-perl <!nocheck>,
+               perl-xs-dev,
+               perl:native
+Standards-Version: 4.6.2
+Vcs-Browser: https://salsa.debian.org/perl-team/modules/packages/libmoose-perl
+Vcs-Git: https://salsa.debian.org/perl-team/modules/packages/libmoose-perl.git
+Homepage: https://metacpan.org/release/Moose
+Rules-Requires-Root: no
 
-Package: template-repository
+Package: libmoose-perl
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Multi-Arch: same
+Depends: ${misc:Depends},
+         ${perl:Depends},
+         ${shlibs:Depends},
+         libclass-load-perl,
+         libclass-load-xs-perl,
+         libdata-optlist-perl,
+         libdevel-globaldestruction-perl,
+         libdevel-overloadinfo-perl,
+         libdevel-stacktrace-perl,
+         libeval-closure-perl,
+         libmodule-runtime-conflicts-perl,
+         libmodule-runtime-perl,
+         libmro-compat-perl,
+         libpackage-deprecationmanager-perl,
+         libpackage-stash-perl,
+         libpackage-stash-xs-perl,
+         libparams-util-perl,
+         libscalar-list-utils-perl (>= 1:1.56),
+         libsub-exporter-perl,
+         libtry-tiny-perl
+Recommends: libdevel-partialdump-perl
+Breaks: libcatalyst-perl (<< 5.90050+),
+        libconfig-mvp-perl (<< 2.200004+),
+        libdevel-repl-perl (<< 1.003020+),
+        libdist-zilla-plugin-git-perl (<< 2.016+),
+        libdist-zilla-perl (<< 5.043+),
+        libfey-orm-perl (<< 0.42+),
+        libfey-perl (<< 0.36+),
+        libfile-changenotify-perl (<< 0.15+),
+        libhttp-throwable-perl (<< 0.017+),
+        libmarkdent-perl (<< 0.16+),
+        libmason-perl (<< 2.18+),
+        libmoose-autobox-perl (<< 0.15+),
+        libmoosex-abc-perl (<< 0.05+),
+        libmoosex-aliases-perl (<< 0.08+),
+        libmoosex-alwayscoerce-perl (<< 0.13+),
+        libmoosex-app-perl (<< 1.41-2~),
+        libmoosex-attribute-deflator-perl (<< 2.1.7+),
+        libmoosex-attribute-dependent-perl (<< 1.1.0+),
+        libmoosex-attribute-prototype-perl (<< 0.10+),
+        libmoosex-attributehelpers-perl (<< 0.22+),
+        libmoosex-attributeindexes-perl (<< 1.0.0+),
+        libmoosex-attributeinflate-perl (<< 0.02+),
+        libmoosex-cascadeclearing-perl (<< 0.03+),
+        libmoosex-classattribute-perl (<< 0.26+),
+        libmoosex-constructor-allerrors-perl (<< 0.021+),
+        libmoosex-declare-perl (<< 0.35+),
+        libmoosex-followpbp-perl (<< 0.02+),
+        libmoosex-getopt-perl (<< 0.56+),
+        libmoosex-instancetracking-perl (<< 0.04+),
+        libmoosex-lazyrequire-perl (<< 0.06+),
+        libmoosex-meta-attribute-index-perl (<< 0.04+),
+        libmoosex-meta-attribute-lvalue-perl (<< 0.05+),
+        libmoosex-method-signatures-perl (<< 0.44+),
+        libmoosex-methodattributes-perl (<< 0.22+),
+        libmoosex-nonmoose-perl (<< 0.24+),
+        libmoosex-object-pluggable-perl (<< 0.0011+),
+        libmoosex-params-validate-perl (<< 0.05+),
+        libmoosex-poe-perl (<< 0.214+),
+        libmoosex-privatesetters-perl (<< 0.03+),
+        libmoosex-role-cmd-perl (<< 0.06+),
+        libmoosex-role-parameterized-perl (<< 1.00+),
+        libmoosex-role-withoverloading-perl (<< 0.14+),
+        libmoosex-runnable-perl (<< 0.03+),
+        libmoosex-scaffold-perl (<< 0.05+),
+        libmoosex-semiaffordanceaccessor-perl (<< 0.05+),
+        libmoosex-setonce-perl (<< 0.100473+),
+        libmoosex-singleton-perl (<< 0.25+),
+        libmoosex-slurpycontructor-perl (<< 1.1+),
+        libmoosex-storage-perl (<< 0.42+),
+        libmoosex-strictconstructor-perl (<< 0.12+),
+        libmoosex-traits-perl (<< 0.11+),
+        libmoosex-types-parameterizable-perl (<< 0.05+),
+        libmoosex-types-perl (<< 0.19+),
+        libmoosex-types-set-object-perl (<< 0.03+),
+        libmoosex-types-signal-perl (<< 1.101930+),
+        libmoosex-undeftolerant-perl (<< 0.11+),
+        libnamespace-autoclean-perl (<< 0.08+),
+        libpod-elemental-perl (<< 0.093280+),
+        libpod-weaver-perl (<< 3.101638+),
+        libprang-perl (<< 0.14+),
+        libreaction-perl (<< 0.002003+),
+        libtest-able-perl (<< 0.10+),
+        libtest-cleannamespaces-perl (<< 0.03+),
+        libtest-moose-more-perl (<< 0.022+),
+        libtest-tempdir-perl (<< 0.05+),
+        libthrowable-perl (<< 0.102080+)
+Description: modern Perl object system framework
+ Moose is an extension of the Perl 5 object system. The main goal of Moose is to
+ make Perl 5 Object Oriented programming easier, more consistent, and less
+ tedious. With Moose you can think more about what you want to do and less about
+ the mechanics of OOP.
+ .
+ Additionally, Moose is built on top of Class::MOP, which is a metaclass system
+ for Perl 5. This means that Moose not only makes building normal Perl 5 objects
+ better, but it provides the power of metaclass programming as well.
+ .
+ Moose also conveniently manages all attributes (including inherited ones) that
+ are defined, but also provides facilities for properly initializing instance
+ slots, setting defaults where appropriate and performing any necessary type
+ constraint checking or coercion.
+ .
+ More details about the structure of Moose as well as its features can be found
+ in the ever-expanding Moose::Cookbook document.

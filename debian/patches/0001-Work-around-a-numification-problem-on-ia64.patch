@@ -1,0 +1,24 @@
+Description: [PATCH] Work around a numification problem on ia64
+ As seen in <http://bugs.debian.org/588118>, the numeric comparison
+ seems to trigger a bug in perl 5.10.1 on the ia64 architecture.
+ .
+ Explicitly numifying before comparing seems to work around this.
+Origin: vendor
+Bug: https://rt.cpan.org/Public/Bug/Display.html?id=59478
+Bug-Debian: https://bugs.debian.org/588118
+Forwarded: https://rt.cpan.org/Public/Bug/Display.html?id=59478
+Author: Niko Tyni <ntyni@debian.org>
+Reviewed-by: gregor herrmann <gregoa@debian.org>
+Last-Update: 2015-10-18
+
+--- a/lib/Moose/Meta/TypeConstraint.pm
++++ b/lib/Moose/Meta/TypeConstraint.pm
+@@ -234,7 +234,7 @@
+     my $other = Moose::Util::TypeConstraints::find_type_constraint($type_or_name);
+     return if not $other;
+ 
+-    return 1 if $self == $other;
++    return 1 if (0+$self == 0+$other);
+ 
+     return unless $self->constraint == $other->constraint;
+ 
